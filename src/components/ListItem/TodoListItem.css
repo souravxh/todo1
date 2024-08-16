@@ -1,7 +1,24 @@
 .list-item-style {
+  margin-left: 25%;
+  width: 50%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #ccc;
+}
+.list-item-style button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+.list-item-style button:hover {
+  background-color: #ff0000;
+}
+.list-item-style input {
+  margin-right: 10px;
 }

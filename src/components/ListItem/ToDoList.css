@@ -1,7 +1,21 @@
-.list-style {
-  list-style-type: none;
-  height: 100%;
-  padding-bottom: 20%;
-  margin: 0;
+.list-style input {
+  height: 30px;
+  width: 40%;
+  border-radius: 5px;
+  margin: 10px;
+}
+.list-style input:focus {
+  outline: none;
+}
+.list-style button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
   cursor: pointer;
+  margin-right: 5px;
+}
+.list-style button:hover {
+  background-color: #ff0000;
 }
