@@ -6,7 +6,7 @@ const ToDoListItem = ({ item, toggleComplete, updateTodo, deleteTodo }) => {
   const [editedText, setEditedText] = React.useState(item.text);
 
   const handleUpdate = () => {
-    updateTodo(item.id, editedText);
+    updateTodo(item._id, editedText);
     setIsEditing(false);
   };
 
@@ -21,7 +21,7 @@ const ToDoListItem = ({ item, toggleComplete, updateTodo, deleteTodo }) => {
           onChange={(e) => setEditedText(e.target.value)}
         />
       ) : (
-        <span onClick={() => toggleComplete(item.id)}>{item.text}</span>
+        <span onClick={() => toggleComplete(item._id)}>{item.text}</span>
       )}
       <div>
         {isEditing ? (
@@ -29,7 +29,7 @@ const ToDoListItem = ({ item, toggleComplete, updateTodo, deleteTodo }) => {
         ) : (
           <button onClick={() => setIsEditing(true)}>Edit</button>
         )}
-        <button onClick={() => deleteTodo(item.id)}>Delete</button>
+        <button onClick={() => deleteTodo(item._id)}>Delete</button>
       </div>
     </li>
   );
