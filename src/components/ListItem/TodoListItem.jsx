@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./TodoListItem.css";
 
-const ToDoListItem = ({ item, toggleComplete, updateTodo, deleteTodo }) => {
-  const [isEditing, setIsEditing] = React.useState(false);
-  const [editedText, setEditedText] = React.useState(item.text);
+const ToDoItem = ({ item, toggleComplete, deleteTodo, updateTodo }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedText, setEditedText] = useState(item.text);
 
   const handleUpdate = () => {
     updateTodo(item._id, editedText);
@@ -25,7 +25,7 @@ const ToDoListItem = ({ item, toggleComplete, updateTodo, deleteTodo }) => {
       )}
       <div>
         {isEditing ? (
-          <button onClick={handleUpdate}>Update</button>
+          <button onClick={handleUpdate}>Save</button>
         ) : (
           <button onClick={() => setIsEditing(true)}>Edit</button>
         )}
@@ -35,4 +35,4 @@ const ToDoListItem = ({ item, toggleComplete, updateTodo, deleteTodo }) => {
   );
 };
 
-export default ToDoListItem;
+export default ToDoItem;
