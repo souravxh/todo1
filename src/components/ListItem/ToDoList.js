@@ -5,15 +5,16 @@ import ToDoItem from "./TodoListItem.jsx";
 const ToDoList = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
+  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
+    console.log("API URL:", process.env.REACT_APP_API_URL);
     fetchTodos();
   }, []);
 
   const fetchTodos = async () => {
     try {
-      const response = await axios.get("http://localhost:5500/api/todos");
-      console.log(response.data); // Log the data to debug
+      const response = await axios.get(`${API_URL}/api/todos`);
       setTodos(response.data);
     } catch (err) {
       console.error(err);
@@ -23,7 +24,7 @@ const ToDoList = () => {
   const addTodo = async () => {
     if (newTodo.trim()) {
       try {
-        const response = await axios.post("http://localhost:5500/api/todos", {
+        const response = await axios.post(`${API_URL}/api/todos`, {
           text: newTodo,
         });
         setTodos([...todos, response.data]);
@@ -36,12 +37,9 @@ const ToDoList = () => {
 
   const updateTodo = async (_id, newText) => {
     try {
-      const response = await axios.patch(
-        `http://localhost:5500/api/todos/${_id}`,
-        {
-          text: newText,
-        }
-      );
+      const response = await axios.patch(`${API_URL}/api/todos/${_id}`, {
+        text: newText,
+      });
       setTodos(todos.map((todo) => (todo._id === _id ? response.data : todo)));
     } catch (err) {
       console.error(err);
@@ -50,7 +48,7 @@ const ToDoList = () => {
 
   const deleteTodo = async (_id) => {
     try {
-      await axios.delete(`http://localhost:5500/api/todos/${_id}`);
+      await axios.delete(`${API_URL}/api/todos/${_id}`);
       setTodos(todos.filter((todo) => todo._id !== _id));
     } catch (err) {
       console.error(err);
@@ -60,12 +58,9 @@ const ToDoList = () => {
   const toggleComplete = async (_id) => {
     const todoToToggle = todos.find((todo) => todo._id === _id);
     try {
-      const response = await axios.patch(
-        `http://localhost:5500/api/todos/${_id}`,
-        {
-          completed: !todoToToggle.completed,
-        }
-      );
+      const response = await axios.patch(`${API_URL}/api/todos/${_id}`, {
+        completed: !todoToToggle.completed,
+      });
       setTodos(todos.map((todo) => (todo._id === _id ? response.data : todo)));
     } catch (err) {
       console.error(err);
