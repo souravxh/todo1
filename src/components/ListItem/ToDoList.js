@@ -16,7 +16,7 @@ const ToDoList = () => {
     const fetchTodos = async () => {
         try {
             // const response = await axios.get(`${API_URL}/todos`);
-            const response = await axios.get(`http://localhost:8000/todo`);
+            const response = await axios.get(`${API_URL}/todo`);
             setTodos(response.data);
         } catch (err) {
             console.error(err);
